@@ -1,2 +1,2 @@
 # DBT
-dbt civica
+dbt civica testing initialize project
