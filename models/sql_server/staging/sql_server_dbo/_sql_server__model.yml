@@ -1,0 +1,215 @@
+version: 2
+
+models:
+  - name: stg_sql_server_dbo__addresses
+    config:
+      contract:
+        enforced: true
+    description: "Table containing address data"
+    columns:
+      - name: address_id
+        description: "Unique identifier for each address"
+        tests:
+          - not_null
+        data_type: integer
+        constraints: 
+          - type: not_null
+      - name: zipcode
+        description: "Zip code of the address"
+        data_type: varchar
+      - name: country
+        description: "Country of the address"
+        data_type: varchar
+      - name: address
+        description: "Full address details"
+        data_type: varchar
+      - name: state
+        description: "State of the address"
+        data_type: varchar
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__events
+    description: "Table containing event data"
+    columns:
+      - name: event_id
+        description: "Unique identifier for each event"
+        data_type: integer
+      - name: page_url
+        description: "URL of the page where the event occurred"
+        data_type: varchar
+      - name: event_type
+        description: "Type of event"
+        data_type: varchar
+      - name: user_id
+        description: "Unique identifier for the user"
+        data_type: integer
+      - name: product_id
+        description: "Unique identifier for the product"
+        data_type: integer
+      - name: session_id
+        description: "Unique identifier for the session"
+        data_type: varchar
+      - name: created_at
+        description: "Timestamp when the event was created"
+        data_type: timestamp
+      - name: order_id
+        description: "Unique identifier for the order"
+        data_type: integer
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__orders
+    description: "Table containing order data"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        data_type: integer
+      - name: shipping_service
+        description: "Name of the shipping service used"
+        data_type: varchar
+      - name: shipping_cost
+        description: "Cost of shipping"
+        data_type: decimal
+      - name: address_id
+        description: "Unique identifier for the address"
+        data_type: integer
+      - name: created_at
+        description: "Timestamp when the order was created"
+        data_type: timestamp
+      - name: promo_id
+        description: "Unique identifier for the promo"
+        data_type: integer
+      - name: estimated_delivery_at
+        description: "Estimated delivery date and time"
+        data_type: timestamp
+      - name: order_cost
+        description: "Total cost of the order"
+        data_type: decimal
+      - name: user_id
+        description: "Unique identifier for the user"
+        data_type: integer
+      - name: order_total
+        description: "Total amount of the order"
+        data_type: decimal
+      - name: delivered_at
+        description: "Timestamp when the order was delivered"
+        data_type: timestamp
+      - name: tracking_id
+        description: "Tracking ID for the order"
+        data_type: varchar
+      - name: status
+        description: "Current status of the order"
+        data_type: varchar
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__order_items
+    description: "Table containing order items data"
+    columns:
+      - name: order_id
+        description: "Unique identifier for the order"
+        data_type: integer
+      - name: product_id
+        description: "Unique identifier for the product"
+        data_type: integer
+      - name: quantity
+        description: "Quantity of the product in the order"
+        data_type: integer
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__products
+    description: "Table containing product data"
+    columns:
+      - name: product_id
+        description: "Unique identifier for the product"
+        data_type: integer
+      - name: price
+        description: "Price of the product"
+        data_type: decimal
+      - name: name
+        description: "Name of the product"
+        data_type: varchar
+      - name: inventory
+        description: "Inventory count of the product"
+        data_type: integer
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__promos
+    description: "Table containing promo data"
+    columns:
+      - name: promo_id
+        description: "Unique identifier for the promo"
+        data_type: integer
+      - name: discount
+        description: "Discount value of the promo"
+        data_type: decimal
+      - name: status
+        description: "Current status of the promo"
+        data_type: varchar
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+
+  - name: stg_sql_server_dbo__users
+    description: "Table containing user data"
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user"
+        data_type: integer
+      - name: updated_at
+        description: "Timestamp of the last update"
+        data_type: timestamp
+      - name: address_id
+        description: "Unique identifier for the address"
+        data_type: integer
+      - name: last_name
+        description: "Last name of the user"
+        data_type: varchar
+      - name: created_at
+        description: "Timestamp when the user was created"
+        data_type: timestamp
+      - name: phone_number
+        description: "Phone number of the user"
+        data_type: varchar
+      - name: total_orders
+        description: "Total number of orders made by the user"
+        data_type: integer
+      - name: first_name
+        description: "First name of the user"
+        data_type: varchar
+      - name: email
+        description: "Email address of the user"
+        data_type: varchar
+      - name: _fivetran_deleted
+        description: "Indicates if the record is deleted"
+        data_type: boolean
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
+

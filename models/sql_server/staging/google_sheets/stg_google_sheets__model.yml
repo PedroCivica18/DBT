@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_google_sheets__budget
+    description: "Table containing address data"
+    columns:
+      - name: product_id
+        description: "Unique identifier for each address"
+        data_type: integer
+      - name: quantity
+        description: "quantity"
+        data_type: integer
+      - name: month
+        description: "month of the product"
+        data_type: date
+      - name: _fivetran_synced
+        description: "Timestamp of the last sync"
+        data_type: timestamp
