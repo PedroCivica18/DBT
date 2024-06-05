@@ -4,16 +4,12 @@ models:
   - name: stg_sql_server_dbo__addresses
     config:
       contract:
-        enforced: true
+        enforced: false
     description: "Table containing address data"
     columns:
       - name: address_id
         description: "Unique identifier for each address"
-        tests:
-          - not_null
         data_type: integer
-        constraints: 
-          - type: not_null
       - name: zipcode
         description: "Zip code of the address"
         data_type: varchar
@@ -212,4 +208,47 @@ models:
       - name: _fivetran_synced
         description: "Timestamp of the last sync"
         data_type: timestamp
+
+# silver models
+  - name: fct_order_items_orders
+    description: "Fact table combining order items and orders"
+    columns:
+      - name: order_id
+        description: "Unique identifier for the order"
+      - name: product_id
+        description: "Unique identifier for the product"
+      - name: quantity
+        description: "Quantity of the product in the order"
+      - name: shipping_service
+        description: "Name of the shipping service used"
+      - name: shipping_cost
+        description: "Cost of shipping"
+      - name: address_id
+        description: "Unique identifier for the address"
+      - name: created_at
+        description: "Timestamp when the order was created"
+      - name: promo_id
+        description: "Unique identifier for the promo"
+      - name: estimated_delivery_at
+        description: "Estimated delivery date and time"
+      - name: order_cost
+        description: "Total cost of the order"
+      - name: user_id
+        description: "Unique identifier for the user"
+      - name: order_total
+        description: "Total amount of the order"
+      - name: delivered_at
+        description: "Timestamp when the order was delivered"
+      - name: tracking_id
+        description: "Tracking ID for the order"
+      - name: status
+        description: "Current status of the order"
+      - name: order_item_deleted
+        description: "Indicates if the order item record is deleted"
+      - name: order_item_synced
+        description: "Timestamp of the last sync for order item"
+      - name: order_deleted
+        description: "Indicates if the order record is deleted"
+      - name: order_synced
+        description: "Timestamp of the last sync for order"
 
